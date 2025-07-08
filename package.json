@@ -1,14 +1,15 @@
 {
   "name": "chat-room",
   "version": "1.0.0",
+  "description": "A live chat room with Google Sign-In and profile customization",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "keywords": [],
   "dependencies": {
     "express": "^5.1.0",
     "firebase": "^11.10.0",
