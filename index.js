@@ -6,6 +6,14 @@ const fs = require("fs");
 
 app.use(express.static("public"));
 
+// Simple test route (use "/ping" so it won’t clash with index.html in /public)
+app.get("/ping", (req, res) => {
+  res.send("helloworld");
+});
+
+// Export app if needed elsewhere
+module.exports = app;
+
 const MSG_FILE = "messages.json";
 let messages = [];
 const typingUsers = new Set();
@@ -24,7 +32,7 @@ if (fs.existsSync(MSG_FILE)) {
 // Clean old messages
 function cleanOldMessages() {
   const cutoff = Date.now() - 24 * 60 * 60 * 1000;
-  messages = messages.filter(m => m.timestamp >= cutoff).slice(-1000);
+  messages = messages.filter((m) => m.timestamp >= cutoff).slice(-1000);
   try {
     fs.writeFileSync(MSG_FILE, JSON.stringify(messages, null, 2));
   } catch (e) {
